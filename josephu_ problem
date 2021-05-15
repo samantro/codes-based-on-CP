@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void solve(vector<int>& v,int k,int n){
+	if(v.size()==1)
+		return ;
+	n=(n+k)%v.size();
+	v.erase(v.begin()+n);
+	solve(v,k,n);
+}
+
+int main(){
+	int n,k;
+	cin>>n>>k;
+	k--;
+	vector<int> v;
+	int p=n;
+	while(n--)
+		v.push_back(p-n);
+	solve(v,k,0);
+	cout<<v[0]<<endl;
+}
