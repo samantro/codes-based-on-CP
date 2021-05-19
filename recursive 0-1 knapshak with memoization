@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+int t[101][1001]; // according to the given constraints.
+memset(t,-1,sizeof(t));
+int knapshak(int wt[],int val[],int w,int n){
+	if(n==0 || w==0)
+		return 0;
+  if(t[n][w]!=-1)
+    return t[n][w];
+	if(wt[n-1]<=w)
+		t[n][w]=max(val[n-1]+knapshak(wt,val,w-wt[n-1],n-1),knapshak(wt,val,w,n-1));
+	else
+		t[n][w]=knapshak(wt,val,w,n-1);
+  return t[n][w];
+}
+
+
+int main(){
+	int n; cin>>n;
+	int wt[n],val[n],w;
+	for(int i=0;i<n;i++)
+		cin>>wt[i];
+	for(int i=0;i<n;i++)
+		cin>>val[i];
+	cin>>w;
+	cout<<knapshak(wt,val,w,n)<<endl;
+}
