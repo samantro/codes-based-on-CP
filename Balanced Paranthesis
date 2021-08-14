@@ -1,0 +1,24 @@
+#include <iostream>
+using namespace std;
+int k=0;
+void rec(string s,int o,int c){
+    if(o==0 && c==0){
+        cout<<s<<endl; k++;
+        return ;
+    }
+    if(o==c) rec(s+"(",o-1,c);
+    else{
+        if(o>0)
+            rec(s+"(",o-1,c);
+        rec(s+")",o,c-1);
+    }
+}
+
+int main() {
+	int n; cin>>n;
+	int o,c;
+	c=o=n;
+	rec("",o,c);
+	cout<<k<<endl; // number of balanced paranthesis possible 
+	return 0;
+}
