@@ -1,3 +1,8 @@
+// without storage of balanced paranthesis
+
+
+
+
 #include <iostream>
 using namespace std;
 int k=0;
@@ -20,5 +25,42 @@ int main() {
 	c=o=n;
 	rec("",o,c);
 	cout<<k<<endl; // number of balanced paranthesis possible 
+	return 0;
+}
+
+
+
+
+
+
+
+
+// with storage
+
+
+#include <bits/stdc++.h>
+using namespace std;
+void rec(string s,int o,int c,vector<string>& v){
+    if(o==0 && c==0){
+        v.push_back(s);
+        return ;
+    }
+    if(o==c) rec(s+"(",o-1,c,v);
+    else{
+        rec(s+")",o,c-1,v);
+        if(o>0)
+            rec(s+"(",o-1,c,v);
+    }
+}
+
+int main() {
+	int n; cin>>n;
+	int o,c;
+	c=o=n;
+	vector<string> v;
+	rec("",o,c,v);
+	for(auto x:v)
+	    cout<<x<<endl;
+	cout<<v.size()<<endl; // number of balanced paranthesis possible 
 	return 0;
 }
