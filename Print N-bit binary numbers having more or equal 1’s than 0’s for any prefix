@@ -1,0 +1,53 @@
+//With storage of the binary number
+
+
+#include <bits/stdc++.h>
+using namespace std;
+void rec(string s,int o,int z,int n,vector<string>& v){
+    if(o+z==n){
+        v.push_back(s);
+        return;
+    }
+    rec(s+"1",o+1,z,n,v);
+    if(o>z)
+        rec(s+"0",o,z+1,n,v);
+}
+
+int main() {
+	int n; cin>>n;
+	int o,c;
+	c=o=n;
+	vector<string> v;
+	rec("",0,0,n,v);
+	for(auto x:v)
+	    cout<<x<<endl;
+	cout<<v.size()<<endl; // number of balanced paranthesis possible 
+	return 0;
+}
+
+
+// without storage
+
+
+
+#include <bits/stdc++.h>
+using namespace std;
+int k=0;
+void rec(string s,int o,int z,int n){
+    if(o+z==n){
+        cout<<s<<endl; k++;
+        return;
+    }
+    rec(s+"1",o+1,z,n);
+    if(o>z)
+        rec(s+"0",o,z+1,n);
+}
+
+int main() {
+	int n; cin>>n;
+	int o,c;
+	c=o=n;
+	rec("",0,0,n);
+	cout<<k<<endl; // number of balanced paranthesis possible 
+	return 0;
+}
